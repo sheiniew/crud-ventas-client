@@ -1,4 +1,4 @@
-const API = "http://localhost:3000/clientes";
+const API = "https://crud-ventas-backend.onrender.com/clientes";
 
 export const crearCliente = async (data) => {
     return fetch(API, {

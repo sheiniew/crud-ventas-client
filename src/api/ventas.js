@@ -1,4 +1,4 @@
-const API = "http://localhost:3000/venta";
+const API = "https://crud-ventas-backend.onrender.com/venta";
 
 export const registrarVenta = (data) =>
   fetch(API, {
