@@ -8,15 +8,16 @@ function App() {
   const [vista, setVista] = useState("productos");
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>Sistema de Ventas</h1>
+    <div className="app-container">
+      <h1>Dashboard de Ventas</h1>
 
-      <button onClick={() => setVista("clientes")}>Clientes</button>
-      <button onClick={() => setVista("productos")}>Productos</button>
-      <button onClick={() => setVista("ventas")}>Ventas</button>
-      <button onClick={() => setVista("reportes")}>Reportes</button>
+      <nav className="nav-bar">
+        <button className={vista === "clientes" ? "active" : ""} onClick={() => setVista("clientes")}>Clientes</button>
+        <button className={vista === "productos" ? "active" : ""} onClick={() => setVista("productos")}>Productos</button>
+        <button className={vista === "ventas" ? "active" : ""} onClick={() => setVista("ventas")}>Nueva Venta</button>
+        <button className={vista === "reportes" ? "active" : ""} onClick={() => setVista("reportes")}>Reportes</button>
+      </nav>
 
-      <hr />
       {vista === "clientes" && <ClientesPage />}
       {vista === "productos" && <ProductosPage />}
       {vista === "ventas" && <VentasPage />}

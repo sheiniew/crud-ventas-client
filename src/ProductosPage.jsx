@@ -48,32 +48,34 @@ export default function ProductosPage() {
   return (
     <div className="page">
       <div className="panel">
-        <h2>Productos</h2>
+        <h2>Catálogo de Productos</h2>
 
-        <input
-          value={nombre}
-          placeholder="Nombre"
-          onChange={(e) => setNombre(e.target.value)}
-        />
-
-        <input
-          value={precio}
-          placeholder="Precio"
-          onChange={(e) => setPrecio(e.target.value)}
-        />
-
-        <button onClick={guardar}>
-          {editId ? "Actualizar producto" : "Crear producto"}
-        </button>
+        <div className="form-group">
+          <input
+            value={nombre}
+            placeholder="Nombre del producto"
+            onChange={(e) => setNombre(e.target.value)}
+          />
+          <input
+            value={precio}
+            placeholder="Precio unitario"
+            onChange={(e) => setPrecio(e.target.value)}
+          />
+          <button onClick={guardar}>
+            {editId ? "Guardar cambios" : "Registrar producto"}
+          </button>
+        </div>
 
         <div className="list">
           {productos.map((p) => (
             <div className="row" key={p.id_producto}>
-              <div className="id">#{p.id_producto}</div>
+              <div className="id">Id: {p.id_producto}</div>
 
-              <div>
-                <strong>{p.nombre}</strong>
-                <div className="muted">${p.precio}</div>
+              <div className="info">
+                <div style={{ fontWeight: "600" }}>{p.nombre}</div>
+                <div className="muted" style={{ color: "#4f46e5", fontWeight: "500" }}>
+                  ${p.precio}
+                </div>
               </div>
 
               <div className="actions">

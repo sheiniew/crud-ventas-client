@@ -1,146 +1,194 @@
-/* ===== RESET ===== */
-* {
-  box-sizing: border-box;
+:root {
+  /* Mantenemos tus variables actuales y ajustamos el fondo */
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  
+  /* Un gris azulado extremadamente claro para el fondo base */
+  --bg: #fdfeff; 
+  --panel: #ffffff;
+  --text: #1e293b;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  
+  /* Color para los puntos de la textura */
+  --dot-color: #e2e8f0; 
 }
 
 body {
   margin: 0;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-  background: #f6f8fc;
-  color: #111827;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: var(--text);
+  background-color: var(--bg);
+  
+  /* TEXTURA DE PUNTOS CSS PURO */
+  background-image: radial-gradient(var(--dot-color) 1px, transparent 1px);
+  background-size: 24px 24px; /* Espaciado entre puntos */
+  
+  /* Suavizado de tipografía para fondos con textura */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* ===== LAYOUT ===== */
+.app-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  /* Aseguramos que el contenedor no tenga fondo para que se vea la textura del body */
+  background: transparent; 
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  letter-spacing: -0.025em;
+}
+
+/* Navegación */
+.nav-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 32px;
+  background: #fff;
+  padding: 6px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  width: fit-content;
+}
+
+.nav-bar button {
+  background: transparent;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.nav-bar button.active {
+  background: var(--primary);
+  color: white;
+}
+
+/* Paneles y Layout */
 .page {
-  max-width: 1100px;
-  margin: 40px auto;
-  padding: 28px;
+  animation: fadeIn 0.3s ease-out;
 }
 
-/* panel tipo dashboard */
 .panel {
-  background: white;
-  border: 1px solid #e6eaf2;
-  border-radius: 14px;
-  padding: 22px;
-  box-shadow: 0 1px 2px rgba(16,24,40,0.04);
+  background: var(--panel);
+  padding: 32px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
-/* título */
 h2 {
-  font-size: 20px;
+  font-size: 1.25rem;
+  margin-bottom: 20px;
   font-weight: 600;
-  margin-bottom: 18px;
-  letter-spacing: -0.2px;
 }
 
-/* ===== INPUTS ===== */
+/* Inputs y Formularios */
 input {
   width: 100%;
-  padding: 11px 12px;
-  margin: 6px 0;
-  border: 1px solid #d9e1ec;
+  padding: 12px 16px;
+  margin-bottom: 12px;
+  border: 1px solid var(--border);
   border-radius: 10px;
-  background: #fff;
-  font-size: 14px;
-  transition: all 0.15s ease;
+  font-size: 0.95rem;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
 }
 
 input:focus {
   outline: none;
-  border-color: #4f46e5;
-  box-shadow: 0 0 0 3px rgba(79,70,229,0.12);
+  border-color: var(--primary);
+  ring: 2px solid #e0e7ff;
 }
 
-/* ===== BOTONES ===== */
 button {
-  background: #4f46e5;
+  background: var(--primary);
   color: white;
   border: none;
-  padding: 10px 14px;
+  padding: 12px 24px;
   border-radius: 10px;
+  font-weight: 600;
   cursor: pointer;
-  font-weight: 500;
-  transition: 0.15s;
-  margin-top: 10px;
+  transition: background 0.2s;
 }
 
 button:hover {
-  background: #4338ca;
+  background: var(--primary-hover);
 }
 
 button.secondary {
-  background: #eef2ff;
-  color: #3730a3;
-}
-
-button.secondary:hover {
-  background: #e0e7ff;
+  background: var(--secondary);
+  color: var(--text);
 }
 
 button.danger {
-  background: #ef4444;
+  background: #fee2e2;
+  color: var(--danger);
 }
 
 button.danger:hover {
-  background: #dc2626;
+  background: #fecaca;
 }
 
-/* ===== LISTAS TIPO TABLA MODERNA ===== */
+/* Listas y Filas */
 .list {
-  margin-top: 18px;
+  margin-top: 32px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
-/* fila tipo tabla */
-.row {
+.row, .row-4 {
   display: grid;
-  grid-template-columns: 90px 1fr auto;
+  grid-template-columns: 60px 1fr auto;
   align-items: center;
-  padding: 12px 14px;
-  border: 1px solid #eef2f7;
-  border-radius: 12px;
+  padding: 16px;
   background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: transform 0.1s;
 }
 
-/* segunda variante con más columnas */
 .row-4 {
-  display: grid;
-  grid-template-columns: 90px 1fr 1fr auto;
-  gap: 10px;
-  align-items: center;
+  grid-template-columns: 60px 2fr 1.5fr 1fr;
 }
 
-/* ID columna */
 .id {
-  font-size: 12px;
-  font-weight: 600;
-  color: #6b7280;
-  background: #f3f4f6;
-  padding: 6px 8px;
-  border-radius: 8px;
-  text-align: center;
+  font-family: monospace;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  background: var(--secondary);
+  padding: 4px 8px;
+  border-radius: 6px;
+  width: fit-content;
 }
 
-/* texto secundario */
 .muted {
-  font-size: 13px;
-  color: #6b7280;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-top: 2px;
 }
 
-/* acciones */
 .actions {
   display: flex;
   gap: 8px;
-  justify-content: flex-end;
 }
 
-/* cards analíticas */
-.card {
-  border: 1px solid #e6eaf2;
-  background: #fff;
-  padding: 14px;
-  border-radius: 14px;
+.actions button {
+  padding: 6px 12px;
+  font-size: 0.85rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }

@@ -23,39 +23,52 @@ export default function ReportesPage() {
   return (
     <div className="page">
       <div className="panel">
-        <h2>Reporte por Cliente</h2>
+        <h2>Reporte de Ventas por Cliente</h2>
 
-        <input
-          placeholder="Cliente ID"
-          onChange={(e) => setCliente(e.target.value)}
-        />
-
-        <button onClick={consultar}>Consultar</button>
+        <div className="form-inline" style={{ display: "flex", gap: "10px" }}>
+          <input
+            placeholder="Ingrese ID del cliente"
+            onChange={(e) => setCliente(e.target.value)}
+            style={{ marginBottom: 0 }}
+          />
+          <button onClick={consultar}>Consultar reporte</button>
+        </div>
 
         {total !== null && (
-          <h3 style={{ marginTop: "14px" }}>
-            Total vendido: <span style={{ color: "#4f46e5" }}>${Number(total)}</span>
-          </h3>
+          <div style={{
+            marginTop: "24px",
+            padding: "16px",
+            background: "#f5f3ff",
+            borderRadius: "12px",
+            border: "1px solid #ddd6fe"
+          }}>
+            <span style={{ color: "#4338ca", fontSize: "0.9rem", fontWeight: "500" }}>Total acumulado:</span>
+            <div style={{ fontSize: "1.5rem", fontWeight: "700", color: "#4f46e5" }}>
+              ${Number(total).toLocaleString()}
+            </div>
+          </div>
         )}
 
-        <div className="list" style={{ marginTop: "18px" }}>
+        <div className="list" style={{ marginTop: "24px" }}>
           {ventas.map((v) => (
             <div className="row-4" key={v.id_venta}>
               <div className="id">#{v.id_venta}</div>
 
               <div>
-                <strong>{v.producto}</strong>
-                <div className="muted">Cantidad: {v.cantidad}</div>
+                <div style={{ fontWeight: "600" }}>{v.producto}</div>
+                <div className="muted">Cant: {v.cantidad}</div>
               </div>
 
               <div>
-                <div className="muted">
-                  {new Date(v.fecha).toLocaleString()}
+                <div className="muted" style={{ fontSize: "0.75rem" }}>
+                  {new Date(v.fecha).toLocaleDateString()}
+                  <br />
+                  {new Date(v.fecha).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                 </div>
               </div>
 
-              <div>
-                <strong>${v.subtotal}</strong>
+              <div style={{ textAlign: "right" }}>
+                <div style={{ fontWeight: "700", color: "#1e293b" }}>${v.subtotal}</div>
               </div>
             </div>
           ))}

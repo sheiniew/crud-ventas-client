@@ -17,25 +17,32 @@ export default function VentasPage() {
 
   return (
     <div className="page">
-      <div className="panel">
-        <h2>Registro de Ventas</h2>
+      <div className="panel" style={{ maxWidth: "500px", margin: "0 auto" }}>
+        <h2>Nueva Transacción</h2>
+        <p className="muted" style={{ marginBottom: "20px" }}>Ingrese los detalles para registrar la venta.</p>
 
+        <label className="muted" style={{ fontSize: "0.8rem", fontWeight: "600" }}>CLIENTE</label>
         <input
-          placeholder="Cliente ID"
+          placeholder="ID del Cliente"
           onChange={(e) => setCliente(e.target.value)}
         />
 
+        <label className="muted" style={{ fontSize: "0.8rem", fontWeight: "600" }}>PRODUCTO</label>
         <input
-          placeholder="Producto ID"
+          placeholder="ID del Producto"
           onChange={(e) => setProducto(e.target.value)}
         />
 
+        <label className="muted" style={{ fontSize: "0.8rem", fontWeight: "600" }}>CANTIDAD</label>
         <input
-          placeholder="Cantidad"
+          placeholder="0"
+          type="number"
           onChange={(e) => setCantidad(e.target.value)}
         />
 
-        <button onClick={vender}>Registrar venta</button>
+        <button onClick={vender} style={{ width: "100%", marginTop: "10px" }}>
+          Confirmar Venta
+        </button>
       </div>
     </div>
   );

@@ -29,33 +29,35 @@ export default function ClientesPage() {
     return (
         <div className="page">
             <div className="panel">
-                <h2>Clientes</h2>
+                <h2>Gestión de Clientes</h2>
 
-                <input
-                    placeholder="Nombre"
-                    value={nombre}
-                    onChange={(e) => setNombre(e.target.value)}
-                />
-
-                <input
-                    placeholder="Correo"
-                    value={correo}
-                    onChange={(e) => setCorreo(e.target.value)}
-                />
-
-                <button onClick={crear}>Crear cliente</button>
+                <div className="form-group">
+                    <input
+                        placeholder="Nombre completo"
+                        value={nombre}
+                        onChange={(e) => setNombre(e.target.value)}
+                    />
+                    <input
+                        placeholder="Correo electrónico"
+                        value={correo}
+                        onChange={(e) => setCorreo(e.target.value)}
+                    />
+                    <button onClick={crear}>Crear nuevo cliente</button>
+                </div>
 
                 <div className="list">
                     {clientes.map((c) => (
                         <div className="row" key={c.id_cliente}>
-                            <div className="id">#{c.id_cliente}</div>
+                            <div className="id">Id: {c.id_cliente}</div>
 
-                            <div>
-                                <div><strong>{c.nombre}</strong></div>
+                            <div className="info">
+                                <div style={{ fontSize: "0.95rem", fontWeight: "600" }}>{c.nombre}</div>
                                 <div className="muted">{c.correo}</div>
                             </div>
 
-                            <div></div>
+                            <div className="actions">
+                                {/* Espacio para acciones futuras */}
+                            </div>
                         </div>
                     ))}
                 </div>
