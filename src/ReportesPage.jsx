@@ -17,7 +17,8 @@ export default function ReportesPage() {
     setTotal(dataTotal.total || dataTotal[0]?.total || 0);
 
     setVentas(dataVentas);
-
+    console.log("Ventas:", dataVentas);
+    console.log("Total:", dataTotal);
   };
 
   return (
@@ -68,7 +69,26 @@ export default function ReportesPage() {
               </div>
 
               <div style={{ textAlign: "right" }}>
-                <div style={{ fontWeight: "700", color: "#1e293b" }}>${v.subtotal}</div>
+                <div style={{ fontSize: "0.75rem", color: "#64748b" }}>
+                  Subtotal: ${(Number(v.subtotal) || 0).toLocaleString()}
+                </div>
+
+                <div style={{ fontSize: "0.75rem", color: "#16a34a" }}>
+                  IVA (19%): ${(Number(v.iva) || 0).toLocaleString()}
+                </div>
+
+                <div style={{ fontSize: "0.75rem", color: "#dc2626" }}>
+                  Retención: -${(Number(v.retencion) || 0).toLocaleString()}
+                </div>
+
+                <div style={{
+                  fontWeight: "700",
+                  marginTop: "4px",
+                  borderTop: "1px solid #e5e7eb",
+                  paddingTop: "4px"
+                }}>
+                  Total: ${(Number(v.total) || 0).toLocaleString()}
+                </div>
               </div>
             </div>
           ))}
