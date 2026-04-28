@@ -2,16 +2,16 @@
   /* Mantenemos tus variables actuales y ajustamos el fondo */
   --primary: #4f46e5;
   --primary-hover: #4338ca;
-  
+
   /* Un gris azulado extremadamente claro para el fondo base */
-  --bg: #fdfeff; 
+  --bg: #fdfeff;
   --panel: #ffffff;
   --text: #1e293b;
   --text-muted: #64748b;
   --border: #e2e8f0;
-  
+
   /* Color para los puntos de la textura */
-  --dot-color: #e2e8f0; 
+  --dot-color: #e2e8f0;
 }
 
 body {
@@ -19,11 +19,12 @@ body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   color: var(--text);
   background-color: var(--bg);
-  
+
   /* TEXTURA DE PUNTOS CSS PURO */
   background-image: radial-gradient(var(--dot-color) 1px, transparent 1px);
-  background-size: 24px 24px; /* Espaciado entre puntos */
-  
+  background-size: 24px 24px;
+  /* Espaciado entre puntos */
+
   /* Suavizado de tipografía para fondos con textura */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -34,7 +35,7 @@ body {
   margin: 0 auto;
   padding: 40px 20px;
   /* Aseguramos que el contenedor no tenga fondo para que se vea la textura del body */
-  background: transparent; 
+  background: transparent;
   min-height: 100vh;
 }
 
@@ -57,7 +58,7 @@ h1 {
   width: fit-content;
 }
 
-.nav-bar button {
+.nav-bar a {
   background: transparent;
   border: none;
   padding: 8px 16px;
@@ -66,9 +67,11 @@ h1 {
   color: var(--text-muted);
   cursor: pointer;
   transition: all 0.2s;
+  text-decoration: none; /* importante */
+  display: inline-block;
 }
 
-.nav-bar button.active {
+.nav-bar a.active {
   background: var(--primary);
   color: white;
 }
@@ -110,6 +113,31 @@ input:focus {
   ring: 2px solid #e0e7ff;
 }
 
+/* Selects */
+select {
+  width: 100%;
+  padding: 12px 16px;
+  margin-bottom: 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+  background: white;
+  color: var(--text);
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2364748b' d='M2 4l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+}
+
+select:focus {
+  outline: none;
+  border-color: var(--primary);
+  ring: 2px solid #e0e7ff;
+}
+
 button {
   background: var(--primary);
   color: white;
@@ -123,6 +151,11 @@ button {
 
 button:hover {
   background: var(--primary-hover);
+}
+
+button:disabled {
+  background: var(--border);
+  cursor: not-allowed;
 }
 
 button.secondary {
@@ -147,7 +180,8 @@ button.danger:hover {
   gap: 12px;
 }
 
-.row, .row-4 {
+.row,
+.row-4 {
   display: grid;
   grid-template-columns: 60px 1fr auto;
   align-items: center;
@@ -189,6 +223,182 @@ button.danger:hover {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.loader {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.loader span {
+  width: 12px;
+  height: 12px;
+  background-color: var(--primary);
+  border-radius: 50%;
+  display: inline-block;
+  animation: bounce 0.6s infinite ease-in-out;
+}
+
+.loader span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+/* Toast Notification */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  padding: 16px 24px;
+  border-radius: 12px;
+  color: white;
+  font-weight: 500;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  animation: slideIn 0.3s ease-out;
+  z-index: 1000;
+}
+
+.toast.success {
+  background: #10b981;
+}
+
+.toast.error {
+  background: #ef4444;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.loader span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  0%, 80%, 100% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+  40% {
+    transform: translateY(-15px);
+    opacity: 1;
+  }
+}
+
+/* Modal de confirmación */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  background: white;
+  padding: 32px;
+  border-radius: 16px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  animation: modalIn 0.2s ease-out;
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-icon {
+  width: 48px;
+  height: 48px;
+  background: #fee2e2;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  color: #ef4444;
+}
+
+.modal-content h3 {
+  margin: 0 0 8px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.modal-content p {
+  margin: 0 0 24px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.modal-cancel {
+  background: #f1f5f9;
+  color: var(--text);
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.modal-cancel:hover {
+  background: #e2e8f0;
+}
+
+.modal-confirm {
+  background: #ef4444;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.modal-confirm:hover {
+  background: #dc2626;
 }

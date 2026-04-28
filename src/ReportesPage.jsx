@@ -5,16 +5,23 @@ export default function ReportesPage() {
   const [cliente, setCliente] = useState("");
   const [ventas, setVentas] = useState([]);
   const [total, setTotal] = useState(null);
+  const [error, setError] = useState(false);
+  const [noVentas, setNoVentas] = useState(false);
 
   const consultar = async () => {
     if (!cliente) {
-      alert("Ingresa un cliente válido");
+      setError(true);
       return;
     }
-
+    setError(false);
+    setNoVentas(false);
     const dataVentas = await ventasPorCliente(cliente);
     const dataTotal = await totalPorCliente(cliente);
     setTotal(dataTotal.total || dataTotal[0]?.total || 0);
+
+    if (dataVentas.length === 0) {
+      setNoVentas(true);
+    }
 
     setVentas(dataVentas);
     console.log("Ventas:", dataVentas);
@@ -25,7 +32,7 @@ export default function ReportesPage() {
     <div className="page">
       <div className="panel">
         <h2>Reporte de Ventas por Cliente</h2>
-
+        <p className="muted" style={{ marginBottom: "20px" }}>Ingrese el ID del cliente para consultar su historial de compras</p>
         <div className="form-inline" style={{ display: "flex", gap: "10px" }}>
           <input
             placeholder="Ingrese ID del cliente"
@@ -34,8 +41,14 @@ export default function ReportesPage() {
           />
           <button onClick={consultar}>Consultar reporte</button>
         </div>
+        {error && <p style={{ color: "red", marginTop: "10px" }}>Por favor ingrese un ID de cliente válido</p>}
+        {noVentas && total !== null && (
+          <div className="empty">
+            <p>No se encontraron ventas para este cliente</p>
+          </div>
+        )}
 
-        {total !== null && (
+        {ventas.length > 0 && total !== null && (
           <div style={{
             marginTop: "24px",
             padding: "16px",
