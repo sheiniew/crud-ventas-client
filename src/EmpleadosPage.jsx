@@ -236,7 +236,7 @@ export default function EmpleadosPage() {
 
                                         <div className="actions">
                                             <button
-                                                className="secondary"
+                                                className="danger"
                                                 onClick={(ev) => {
                                                     ev.stopPropagation();
                                                     confirmarReactivar(e);
@@ -263,7 +263,7 @@ export default function EmpleadosPage() {
                 }
                 message={
                     accionModal === "inhabilitar"
-                        ? `¿Estás seguro de inhabilitar a ${empleadoAEliminar?.nombre}?`
+                        ? `¿Estas seguro de inhabilitar a ${empleadoAEliminar?.nombre}?`
                         : `¿Deseas reactivar a ${empleadoAEliminar?.nombre}?`
                 }
                 confirmText={
