@@ -298,7 +298,7 @@ export default function ProductosPage() {
         onClose={() => setModalOpen(false)}
         onConfirm={handleConfirmarEliminar}
         title="Confirmar desactivación"
-        message={`¿Estás seguro de que deseas desactivar "${productoAEliminar?.nombre}"? Esta acción no se puede deshacer`}
+        message={`¿Estás seguro de que deseas desactivar "${productoAEliminar?.nombre}"? Esta acción se puede revertir en la sección de 'Ver inactivos'`}
       />
       {toast && (
         <div
