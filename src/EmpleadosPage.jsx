@@ -184,6 +184,7 @@ export default function EmpleadosPage() {
                                         <div className="actions">
                                             <button
                                                 className="secondary"
+                                                style={{marginTop:"10px"}}
                                                 onClick={(ev) => {
                                                     ev.stopPropagation();
                                                     setEditId(e.id_empleado);
