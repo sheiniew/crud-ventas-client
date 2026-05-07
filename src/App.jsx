@@ -18,7 +18,7 @@ function App() {
         <NavLink to="/empleados" className={({ isActive }) => isActive ? "active" : ""}>Empleados</NavLink>
       </nav>
         <Routes>
-          <Route path="/" element={<EmpleadosPage />} />
+          <Route path="/" element={<ProductosPage />} />
           <Route path="/empleado/:id" element={<EmpleadoDetallePage />} />
           <Route path="/clientes" element={<ClientesPage />} />
           <Route path="/productos" element={<ProductosPage />} />
